@@ -41,6 +41,11 @@ services:
     networks:
       - ecommerce-network
 
+  redis:
+    container_name: redis
+    image: redis
+    networks:
+      - ecommerce-network
 volumes:
   postgres-data:
 
