@@ -1,0 +1,49 @@
+version: '3'
+services:
+  postgresql:
+    container_name: postgresql
+    environment:
+      - POSTGRES_PASSWORD=085777
+      - POSTGRES_DB=ecommerce_db_test
+    networks:
+      - ecommerce-network
+    volumes:
+      - "postgres-data:/var/lib/postgresql/data"
+    image: postgres
+
+  ecommerce-app:
+    container_name: ecommerce-app
+    environment:
+      - DB_URL=postgresql
+      - DB_PORT=5432
+      - APP_PORT=8081
+      - DB_NAME=ecommerce_db_test
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=085777
+    ports:
+      - "8081:8081"
+    build: ./e-commerce-spring
+    networks:
+      - ecommerce-network
+
+  wallet-app:
+    container_name: wallet-app
+    environment:
+      - DB_URL=postgresql
+      - DB_PORT=5432
+      - APP_PORT=8082
+      - DB_NAME=ecommerce_db_test
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=085777
+    ports:
+      - "8082:8082"
+    build: ./wallet
+    networks:
+      - ecommerce-network
+
+volumes:
+  postgres-data:
+
+networks:
+  ecommerce-network:
+    driver: bridge
