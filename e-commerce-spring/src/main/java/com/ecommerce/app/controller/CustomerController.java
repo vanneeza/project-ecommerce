@@ -3,6 +3,7 @@ package com.ecommerce.app.controller;
 import com.ecommerce.app.entity.Customer;
 import com.ecommerce.app.service.CustomerService;
 import com.ecommerce.app.utils.constant.Constant;
+import com.ecommerce.app.utils.response.CustomerAuthResponse;
 import com.ecommerce.app.utils.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,8 +24,9 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<Response<Customer>> save(@RequestBody Customer customer) {
-        Customer saveCustomer = customerService.save(customer);
+    public ResponseEntity<Response<CustomerAuthResponse>> save(@RequestBody Customer customer) {
+        CustomerAuthResponse saveCustomer = customerService.save(customer);
+
         String message = String.format(Constant.SUCCESS_INSERT, "customer");
         return Response.response(message, HttpStatus.CREATED.value(), "CREATED", saveCustomer);
     }
@@ -43,13 +45,13 @@ public class CustomerController {
         return Response.response(message, HttpStatus.OK.value(), "OK", getByIdCustomer);
     }
 
-    @PutMapping
-    public ResponseEntity<Response<Customer>> update(@RequestBody Customer customer) {
-        Customer updateCustomer = customerService.save(customer);
-        String message = String.format(Constant.SUCCESS_INSERT, "customer");
-
-        return Response.response(message, HttpStatus.CREATED.value(), "CREATED", updateCustomer);
-    }
+//    @PutMapping
+//    public ResponseEntity<Response<Customer>> update(@RequestBody Customer customer) {
+//        Customer updateCustomer = customerService.save(customer);
+//        String message = String.format(Constant.SUCCESS_INSERT, "customer");
+//
+//        return Response.response(message, HttpStatus.CREATED.value(), "CREATED", updateCustomer);
+//    }
 
     @DeleteMapping("/{customerId}")
     public ResponseEntity<Response<Optional<Customer>>> deleted(@PathVariable String customerId) {

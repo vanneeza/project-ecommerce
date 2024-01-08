@@ -4,6 +4,7 @@ import com.wallet.app.entity.Wallet;
 import com.wallet.app.repository.WalletRepository;
 import com.wallet.app.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class WalletServiceImpl implements WalletService {
     }
 
     @Override
+    @Cacheable(value = "wallet")
     public List<Wallet> getAll() {
         return walletRepository.findAll();
     }

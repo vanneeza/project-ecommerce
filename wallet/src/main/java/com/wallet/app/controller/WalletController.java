@@ -27,4 +27,5 @@ public class WalletController {
     public List<Wallet> getAll(){
         return walletService.getAll();
     }
+
 }

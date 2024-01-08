@@ -1,11 +1,11 @@
 package com.ecommerce.app.utils.constant;
 
 public class Constant {
-    public static final String CUSTOMER_PATH = "/customers";
-    public static final String PRODUCT_PATH = "/products";
-    public static final String CHART_PATH = "/charts";
-    public static final String CHART_ITEM_PATH = "/chart/items";
-    public static final String ORDER_PATH = "/orders";
+    public static final String CUSTOMER_PATH = "/api/v1/customers";
+    public static final String PRODUCT_PATH = "/api/v1/products";
+    public static final String CHART_PATH = "/api/v1/charts";
+    public static final String CHART_ITEM_PATH = "/api/v1/chart/items";
+    public static final String ORDER_PATH = "/api/v1/orders";
 
     public static final  String SUCCESS_INSERT = "Data resources %s has been inserted!";
     public static final  String SUCCESS_DELETE = "Data resources %s has been deleted!";
